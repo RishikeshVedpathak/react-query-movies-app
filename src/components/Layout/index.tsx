@@ -2,17 +2,18 @@ import React from "react";
 import styles from "./index.module.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "pages/Home";
+import { Paper } from "@material-ui/core";
 
 const Layout = () => {
   return (
     <Router>
-      <div className={styles.root}>
+      <Paper className={styles.root}>
         <Switch>
           <Route path="/">
             <Home />
           </Route>
         </Switch>
-      </div>
+      </Paper>
     </Router>
   );
 };
