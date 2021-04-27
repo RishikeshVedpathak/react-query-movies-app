@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Input } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import styles from "./index.module.css";
 
 type SearchBoxProps = {
@@ -11,7 +11,12 @@ const defaultProps = {
 
 const SearchBox = ({ onChange }: SearchBoxProps): ReactElement => {
   return (
-    <Input type="text" onChange={(event) => onChange(event.target.value)} />
+    <TextField
+      type="text"
+      variant="outlined"
+      placeholder="Search for a movie"
+      onChange={(event) => onChange(event.target.value)}
+    />
   );
 };
 
