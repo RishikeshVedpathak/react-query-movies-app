@@ -17,19 +17,28 @@ const getBaseURL = (url: string): string => {
  */
 const service = {
   get: async (url: string, params: object) => {
-    const response = await fetch(
-      `${getBaseURL(url)}&${new URLSearchParams({
-        ...params,
-      }).toString()}`,
-      {
-        method: "GET",
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded", // application/x-www-form-urlencoded, application/json
-        },
+    try {
+      let response = await fetch(
+        `${getBaseURL(url)}&${new URLSearchParams({
+          ...params,
+        }).toString()}`,
+        {
+          method: "GET",
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded", // application/x-www-form-urlencoded, application/json
+          },
+        }
+      ).then((res) => res.json());
+
+      if (response.Response === "False") {
+        throw Error(response.Error);
+      } else {
+        return response;
       }
-    );
-    return response.json(); // parses JSON response into native JavaScript objects
+    } catch (error) {
+      throw Error(error);
+    }
   },
   post: async (url: string, data: object) => {
     const response = await fetch(getBaseURL(url), {

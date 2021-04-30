@@ -12,7 +12,7 @@ const Home = (): ReactElement => {
     setSearchText(text);
   };
 
-  const { status, error, data } = useQuery(
+  const { isSuccess, isLoading, error, data } = useQuery(
     [`movies`, searchText],
     () => service.get(CONSTANTS.BASE_URL, { s: searchText }),
     {
@@ -23,7 +23,10 @@ const Home = (): ReactElement => {
   return (
     <div className={styles.root}>
       <SearchBox onChange={handleSearchChange} />
-      <div>{!!data && JSON.stringify(data)}</div>
+      <div>{!!isSuccess && JSON.stringify(data)}</div>
+      {!!isLoading && <div>Loading...</div>}
+      {/* <div>status : {JSON.stringify(status)}</div>
+      <div>error : {JSON.stringify(error)}</div> */}
     </div>
   );
 };

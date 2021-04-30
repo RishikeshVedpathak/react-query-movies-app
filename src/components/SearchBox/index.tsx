@@ -30,7 +30,10 @@ const SearchBox = ({ onChange }: SearchBoxProps): ReactElement => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleChange = () => {
-    onChange(!!inputRef.current ? inputRef.current.value : "");
+    if (!!inputRef.current) {
+      onChange(inputRef.current.value);
+      // inputRef.current.value = "";
+    }
   };
 
   return (
