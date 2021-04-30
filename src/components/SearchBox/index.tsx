@@ -15,6 +15,7 @@ const SearchBox = ({ onChange }: SearchBoxProps): ReactElement => {
       type="text"
       variant="outlined"
       placeholder="Search for a movie"
+      size="small"
       onChange={(event) => onChange(event.target.value)}
     />
   );

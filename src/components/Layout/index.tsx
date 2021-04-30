@@ -7,7 +7,7 @@ import { Paper } from "@material-ui/core";
 const Layout = () => {
   return (
     <Router>
-      <Paper className={styles.root}>
+      <Paper square className={styles.root}>
         <Switch>
           <Route path="/">
             <Home />
