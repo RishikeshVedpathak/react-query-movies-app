@@ -16,14 +16,19 @@ const getBaseURL = (url: string): string => {
  * Service object exported to use across application
  */
 const service = {
-  get: async (url: string) => {
-    const response = await fetch(getBaseURL(url), {
-      method: "GET",
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded", // application/x-www-form-urlencoded, application/json
-      },
-    });
+  get: async (url: string, params: object) => {
+    const response = await fetch(
+      `${getBaseURL(url)}&${new URLSearchParams({
+        ...params,
+      }).toString()}`,
+      {
+        method: "GET",
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded", // application/x-www-form-urlencoded, application/json
+        },
+      }
+    );
     return response.json(); // parses JSON response into native JavaScript objects
   },
   post: async (url: string, data: object) => {
