@@ -1,7 +1,12 @@
 .root {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.movieListContainer {
+  padding: 2rem;
+  flex: 1;
 }

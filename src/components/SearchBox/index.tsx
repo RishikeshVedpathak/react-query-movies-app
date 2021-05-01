@@ -4,6 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 type SearchBoxProps = {
   onChange: (text: string) => void;
+  className?: string;
 };
 const defaultProps = {
   onChange: () => {},
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchBox = ({ onChange }: SearchBoxProps): ReactElement => {
+const SearchBox = ({ onChange, className }: SearchBoxProps): ReactElement => {
   const classes = useStyles();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -37,7 +38,7 @@ const SearchBox = ({ onChange }: SearchBoxProps): ReactElement => {
   };
 
   return (
-    <Paper variant="outlined" className={classes.root}>
+    <Paper variant="outlined" className={`${classes.root} ${className}`}>
       <InputBase
         className={classes.input}
         placeholder="Search for a movie"
