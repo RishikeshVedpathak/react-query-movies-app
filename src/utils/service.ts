@@ -37,7 +37,7 @@ const service = {
         return response;
       }
     } catch (error) {
-      throw Error(error);
+      throw error.message;
     }
   },
   post: async (url: string, data: object) => {
