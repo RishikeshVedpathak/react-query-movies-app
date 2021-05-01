@@ -4,6 +4,8 @@ import SearchBox from "components/SearchBox";
 import service from "utils/service";
 import CONSTANTS from "utils/constants";
 import { useQuery } from "react-query";
+import MovieCard, { MovieCardProps } from "components/MovieCard";
+import { Container, Grid } from "@material-ui/core";
 
 const Home = (): ReactElement => {
   const [searchText, setSearchText] = useState("");
@@ -23,10 +25,31 @@ const Home = (): ReactElement => {
   return (
     <div className={styles.root}>
       <SearchBox onChange={handleSearchChange} />
-      <div>{!!isSuccess && JSON.stringify(data)}</div>
-      {!!isLoading && <div>Loading...</div>}
-      {/* <div>status : {JSON.stringify(status)}</div>
-      <div>error : {JSON.stringify(error)}</div> */}
+
+      <div className={styles.movieListContainer}>
+        {isLoading && <div>Loading...</div>}
+
+        {isSuccess &&
+          (!!data && data.Search.length ? (
+            <Container maxWidth={false}>
+              <Grid container spacing={2} xs={12}>
+                {data.Search.map(
+                  ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
+                    <Grid item xs={12} md={3} key={imdbID}>
+                      <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
+                    </Grid>
+                  )
+                )}
+              </Grid>
+            </Container>
+          ) : (
+            "No Result"
+          ))}
+
+        {!!error && <div>{JSON.stringify(error)}</div>}
+
+        {/* <div>isSuccess : {JSON.stringify(isSuccess)}</div> */}
+      </div>
     </div>
   );
 };
