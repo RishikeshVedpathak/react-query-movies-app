@@ -19,6 +19,13 @@ const darkTheme = createMuiTheme({
   palette: {
     type: "dark",
   },
+  overrides: {
+    MuiCard: {
+      root: {
+        boxShadow: "2px 2px 2px 0px rgba(255,255,255,0.25)",
+      },
+    },
+  },
 });
 
 function App() {
