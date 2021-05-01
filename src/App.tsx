@@ -1,12 +1,18 @@
 import React from "react";
 import "./App.css";
-import Layout from "components/Layout";
+import Layout from "Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 // Dark theme
 const darkTheme = createMuiTheme({
