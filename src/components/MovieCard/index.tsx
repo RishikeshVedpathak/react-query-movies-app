@@ -26,6 +26,7 @@ const MovieCard = ({ Title, Year, imdbID, Type, Poster }: MovieCardProps) => {
           height="200"
           image={Poster}
           title={Title}
+          className={styles.poster}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
