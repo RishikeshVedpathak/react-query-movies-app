@@ -1,0 +1,21 @@
+.root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.actionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.poster {
+    transition: all .5s ease-in-out;
+}
+
+.poster:hover {
+    transform: scale(1.1);
+}
