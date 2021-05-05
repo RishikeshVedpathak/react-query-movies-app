@@ -4,11 +4,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   background: #000000;
 }
 
+.root>div {
+  display: flex;
+  justify-content: center;
+}
+
 .movieListContainer {
-  padding: 2rem;
   flex: 1;
+  padding: 2rem;
 }

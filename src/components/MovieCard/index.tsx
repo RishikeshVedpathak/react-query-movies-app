@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import CalendarToday from "@material-ui/icons/CalendarToday";
 
 export type MovieCardProps = {
   Title: string;
@@ -35,6 +36,11 @@ const MovieCard = ({ Title, Year, imdbID, Type, Poster }: MovieCardProps) => {
         </CardContent>
       </CardActionArea>
       <CardActions className={styles.actionsContainer}>
+        <Typography gutterBottom component="i" className={styles.yearSection}>
+          <CalendarToday />
+          &nbsp;
+          {Year}
+        </Typography>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
