@@ -26,6 +26,9 @@ const darkTheme = createMuiTheme({
       },
     },
   },
+  typography: {
+    fontFamily: 'Comic Neue'
+  }
 });
 
 function App() {
