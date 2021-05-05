@@ -24,7 +24,9 @@ const Home = (): ReactElement => {
 
   return (
     <div className={styles.root}>
-      <SearchBox onChange={handleSearchChange} />
+      <div>
+        <SearchBox onChange={handleSearchChange} />
+      </div>
 
       <div className={styles.movieListContainer}>
         {isLoading && <div>Loading...</div>}
@@ -47,8 +49,6 @@ const Home = (): ReactElement => {
           ))}
 
         {!!error && <div>{JSON.stringify(error)}</div>}
-
-        {/* <div>isSuccess : {JSON.stringify(isSuccess)}</div> */}
       </div>
     </div>
   );
