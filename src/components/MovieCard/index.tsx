@@ -20,24 +20,24 @@ export type MovieCardProps = {
 const MovieCard = ({ Title, Year, imdbID, Type, Poster }: MovieCardProps) => {
   return (
     <Card className={styles.root}>
-      <CardActionArea>
+      <CardActionArea className={styles.cardArea}>
         <CardMedia
           component="img"
           alt={Title}
-          height="200"
+          height="400"
           image={Poster}
           title={Title}
           className={styles.poster}
         />
-        <CardContent>
+        <CardContent className={styles.overText}>
           <Typography gutterBottom variant="h5" component="h2">
-            {Title}
+            <b>{Title}</b>
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className={styles.actionsContainer}>
         <Typography gutterBottom component="i" className={styles.yearSection}>
-          <CalendarToday />
+          <CalendarToday fontSize="small" />
           &nbsp;
           {Year}
         </Typography>
