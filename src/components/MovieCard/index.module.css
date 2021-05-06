@@ -6,6 +6,11 @@
     justify-content: space-between;
 }
 
+.cardArea {
+    position: relative;
+    overflow: hidden;
+}
+
 .actionsContainer {
     display: flex;
     flex-direction: row;
@@ -13,6 +18,7 @@
 }
 
 .poster {
+    /* position: relative; */
     transition: all .5s ease-in-out;
 }
 
@@ -20,7 +26,15 @@
     transform: scale(1.1);
 }
 
-.yearSection{
+.yearSection {
     display: flex;
     align-items: center;
+}
+
+.overText {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), transparent);
 }

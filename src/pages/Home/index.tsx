@@ -45,7 +45,7 @@ const Home = (): ReactElement => {
             <Grid container spacing={2} xs={12}>
               {data.Search.map(
                 ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
-                  <Grid item xs={12} md={2} key={imdbID}>
+                  <Grid item xs={12} md={3} key={imdbID}>
                     <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
                   </Grid>
                 )
