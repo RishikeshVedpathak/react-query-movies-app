@@ -5,7 +5,8 @@ import service from "utils/service";
 import CONSTANTS from "utils/constants";
 import { useQuery } from "react-query";
 import MovieCard, { MovieCardProps } from "components/MovieCard";
-import { Container, Grid } from "@material-ui/core";
+import Skeleton from "components/MovieCard/Skeleton";
+import { Grid } from "@material-ui/core";
 
 const Home = (): ReactElement => {
   const [searchText, setSearchText] = useState("");
@@ -29,21 +30,27 @@ const Home = (): ReactElement => {
       </div>
 
       <div className={styles.movieListContainer}>
-        {isLoading && <div>Loading...</div>}
+        {isLoading && (
+          <Grid container spacing={2} xs={12}>
+            {[...new Array(10)].map((index: number) => (
+              <Grid item xs={12} md={2} key={index}>
+                <Skeleton />
+              </Grid>
+            ))}
+          </Grid>
+        )}
 
         {isSuccess &&
           (!!data && data.Search.length ? (
-            <Container maxWidth={false}>
-              <Grid container spacing={2} xs={12}>
-                {data.Search.map(
-                  ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
-                    <Grid item xs={12} md={2} key={imdbID}>
-                      <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
-                    </Grid>
-                  )
-                )}
-              </Grid>
-            </Container>
+            <Grid container spacing={2} xs={12}>
+              {data.Search.map(
+                ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
+                  <Grid item xs={12} md={2} key={imdbID}>
+                    <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
+                  </Grid>
+                )
+              )}
+            </Grid>
           ) : (
             "No Result"
           ))}
