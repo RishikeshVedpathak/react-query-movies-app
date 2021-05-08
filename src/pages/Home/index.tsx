@@ -33,7 +33,7 @@ const Home = (): ReactElement => {
         {isLoading && (
           <Grid container spacing={2} xs={12}>
             {[...new Array(10)].map((index: number) => (
-              <Grid item xs={12} md={2} key={index}>
+              <Grid item xs={12} md={3} key={index}>
                 <Skeleton />
               </Grid>
             ))}
