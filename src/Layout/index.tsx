@@ -1,18 +1,22 @@
-import React from "react";
+import { lazy, Suspense } from "react";
 import styles from "./index.module.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "pages/Home";
 import { Paper } from "@material-ui/core";
+import Fallback from "components/Fallback";
+
+const Home = lazy(() => import("pages/Home"));
 
 const Layout = () => {
   return (
     <Router>
       <Paper square className={styles.root}>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Suspense fallback={<Fallback />}>
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Suspense>
       </Paper>
     </Router>
   );
