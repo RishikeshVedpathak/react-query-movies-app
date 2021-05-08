@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarToday from "@material-ui/icons/CalendarToday";
+import { useHistory } from "react-router";
 
 export type MovieCardProps = {
   Title: string;
@@ -18,9 +19,14 @@ export type MovieCardProps = {
 };
 
 const MovieCard = ({ Title, Year, imdbID, Type, Poster }: MovieCardProps) => {
+  const history = useHistory();
+  const handleMovieSelect = () => {
+    history.push(`/${imdbID}`);
+  };
+
   return (
     <Card className={styles.root}>
-      <CardActionArea className={styles.cardArea}>
+      <CardActionArea className={styles.cardArea} onClick={handleMovieSelect}>
         <CardMedia
           component="img"
           alt={Title}

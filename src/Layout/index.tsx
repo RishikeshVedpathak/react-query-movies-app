@@ -5,6 +5,7 @@ import { Paper } from "@material-ui/core";
 import Fallback from "components/Fallback";
 
 const Home = lazy(() => import("pages/Home"));
+const MovieDetails = lazy(() => import("pages/MovieDetails"));
 
 const Layout = () => {
   return (
@@ -12,8 +13,11 @@ const Layout = () => {
       <Paper square className={styles.root}>
         <Suspense fallback={<Fallback />}>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/:movieId">
+              <MovieDetails />
             </Route>
           </Switch>
         </Suspense>
