@@ -20,6 +20,8 @@ const MovieDetails = (): ReactElement => {
 
   return (
     <div className={styles.root}>
+      {isLoading && <div>Loading...</div>}
+
       {isSuccess && (
         <Grid container justify="center">
           <Grid item xs={12} sm={8}>
@@ -56,7 +58,7 @@ const MovieDetails = (): ReactElement => {
 
                 <div className={styles.plot}>{data.Plot}</div>
 
-                <Divider light={false}/>
+                <Divider light={false} />
 
                 <Grid container className={styles.metaData}>
                   <Grid item xs={3} md={2} className={styles.metaLabel}>
