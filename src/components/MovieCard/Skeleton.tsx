@@ -13,9 +13,9 @@ const Skeleton = (): React.ReactElement => {
           animation="wave"
           variant="rect"
           width="100%"
-          height={200}
+          height={400}
         />
-        <CardContent>
+        <CardContent className={styles.overText}>
           <MuiSkeleton
             animation="wave"
             variant="text"

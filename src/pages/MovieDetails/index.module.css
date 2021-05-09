@@ -1,0 +1,89 @@
+.root {
+    flex: 1;
+}
+
+.detailsSection {
+    padding: 0rem 1rem;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 2.4rem;
+    padding-right: 0.5rem;
+}
+
+.ratingsRoot {
+    display: flex;
+    align-items: center;
+}
+
+.ratingsContainer {
+    font-size: 1.5rem;
+    color: #e4bb24;
+}
+
+.ratingsContainer>i {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    color: #ffffff;
+}
+
+.votes {
+    font-size: 0.8rem;
+}
+
+.subInfo {
+    display: flex;
+    margin: 1rem 0rem;
+    justify-content: flex-start;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    color: #ffffff;
+}
+
+.subInfo div {
+    padding: 0rem 1rem;
+    border-right: 2px solid rgb(255, 255, 255, 0.5);
+}
+
+.subInfo div:first-child {
+    padding-left: 0rem;
+}
+
+.subInfo div:last-child {
+    border-right: 0px;
+}
+
+.plot {
+    margin-bottom: 1rem;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.metaData {
+    margin: 1rem 0rem;
+}
+
+.metaLabel {
+    font-weight: bold;
+}
+
+.metaValue {
+    opacity: 0.7;
+    color: #ffffff;
+}
+
+@media only screen and (min-width: 600px) {
+    .root {
+        padding-top: 2rem;
+    }
+
+    .detailsSection {
+        padding: 0rem 2rem;
+    }
+}

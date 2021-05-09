@@ -7,7 +7,6 @@ import CONSTANTS from "utils/constants";
  */
 const getBaseURL = (url: string): string => {
   return `${url}?${new URLSearchParams({
-    i: CONSTANTS.API_USER_ID,
     apikey: CONSTANTS.API_KEY,
   }).toString()}`;
 };

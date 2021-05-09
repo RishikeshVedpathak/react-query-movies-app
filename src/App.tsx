@@ -22,7 +22,7 @@ const darkTheme = createMuiTheme({
   overrides: {
     MuiCard: {
       root: {
-        boxShadow: "2px 2px 2px 0px rgba(255,255,255, 0.5)",
+        // boxShadow: "2px 2px 2px 0px rgba(255,255,255, 0.5)",
       },
     },
   },
