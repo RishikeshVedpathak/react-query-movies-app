@@ -1,0 +1,52 @@
+.root {
+    flex: 1;
+}
+
+.detailsSection {
+    padding: 0rem 1rem;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    padding-right: 0.5rem;
+}
+
+.ratingsRoot {
+    display: flex;
+    align-items: center;
+}
+
+.ratingsContainer {
+    font-size: 1.5rem;
+    color: #e4bb24;
+}
+
+.ratingsContainer>i {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    color: #ffffff;
+}
+
+.votes {
+    font-size: 0.8rem;
+}
+
+.plot {
+    margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .root {
+        padding-top: 2rem;
+    }
+
+    .detailsSection {
+        padding: 0rem 2rem;
+    }
+}
