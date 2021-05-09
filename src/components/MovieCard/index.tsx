@@ -36,9 +36,7 @@ const MovieCard = ({ Title, Year, imdbID, Type, Poster }: MovieCardProps) => {
           className={styles.poster}
         />
         <CardContent className={styles.overText}>
-          <Typography gutterBottom variant="h5" component="h2">
-            <b>{Title}</b>
-          </Typography>
+            <h2>{Title}</h2>
         </CardContent>
       </CardActionArea>
       <CardActions className={styles.actionsContainer}>

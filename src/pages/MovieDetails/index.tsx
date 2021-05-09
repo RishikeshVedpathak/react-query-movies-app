@@ -6,6 +6,7 @@ import service from "utils/service";
 import CONSTANTS from "utils/constants";
 import { Grid } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
+import Divider from "@material-ui/core/Divider";
 
 const MovieDetails = (): ReactElement => {
   const { movieId } = useParams<{ movieId: string }>();
@@ -46,7 +47,81 @@ const MovieDetails = (): ReactElement => {
                   </div>
                 </div>
 
+                <div className={styles.subInfo}>
+                  <div>{data.Year}</div>
+                  <div>{data.Rated}</div>
+                  <div>{data.Released}</div>
+                  <div>{data.Runtime}</div>
+                </div>
+
                 <div className={styles.plot}>{data.Plot}</div>
+
+                <Divider light={false}/>
+
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Genre :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Genre}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Director :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Director}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Writer :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Writer}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Actors :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Actors}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Language :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Language}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Country :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Country}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Awards :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Awards}
+                  </Grid>
+                </Grid>
+                <Grid container className={styles.metaData}>
+                  <Grid item xs={3} md={2} className={styles.metaLabel}>
+                    Production :
+                  </Grid>
+                  <Grid item xs={9} md={10} className={styles.metaValue}>
+                    {data.Production}
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
