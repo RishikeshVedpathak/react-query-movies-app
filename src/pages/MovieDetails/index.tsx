@@ -7,6 +7,7 @@ import CONSTANTS from "utils/constants";
 import { Grid } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import Divider from "@material-ui/core/Divider";
+import Skeleton from "./Skeleton";
 
 const MovieDetails = (): ReactElement => {
   const { movieId } = useParams<{ movieId: string }>();
@@ -20,7 +21,7 @@ const MovieDetails = (): ReactElement => {
 
   return (
     <div className={styles.root}>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Skeleton />}
 
       {isSuccess && (
         <Grid container justify="center">

@@ -25,15 +25,15 @@ const Home = (): ReactElement => {
 
   return (
     <div className={styles.root}>
-      <div>
+      <div className={styles.searchBoxContainer}>
         <SearchBox onChange={handleSearchChange} />
       </div>
 
       <div className={styles.movieListContainer}>
         {isLoading && (
-          <Grid container spacing={2} xs={12}>
-            {[...new Array(10)].map((index: number) => (
-              <Grid item xs={12} md={3} key={index}>
+          <Grid container spacing={2}>
+            {[...new Array(10)].map((_, i: number) => (
+              <Grid item xs={12} md={3} key={i}>
                 <Skeleton />
               </Grid>
             ))}
@@ -42,7 +42,7 @@ const Home = (): ReactElement => {
 
         {isSuccess &&
           (!!data && data.Search.length ? (
-            <Grid container spacing={2} xs={12}>
+            <Grid container spacing={2}>
               {data.Search.map(
                 ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
                   <Grid item xs={12} md={3} key={imdbID}>

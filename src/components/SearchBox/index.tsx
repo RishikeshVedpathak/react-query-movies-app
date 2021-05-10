@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
-    width: 400,
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -43,6 +42,8 @@ const SearchBox = ({ onChange, className }: SearchBoxProps): ReactElement => {
         className={classes.input}
         placeholder="Search for a movie"
         inputRef={inputRef}
+        autoFocus
+        fullWidth
         onKeyPress={(e) => {
           if (e.key === "Enter") {
             handleChange();
