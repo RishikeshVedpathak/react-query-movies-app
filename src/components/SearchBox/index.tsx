@@ -43,6 +43,7 @@ const SearchBox = ({ onChange, className }: SearchBoxProps): ReactElement => {
         className={classes.input}
         placeholder="Search for a movie"
         inputRef={inputRef}
+        autoFocus
         onKeyPress={(e) => {
           if (e.key === "Enter") {
             handleChange();
