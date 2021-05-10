@@ -25,7 +25,7 @@ const Home = (): ReactElement => {
 
   return (
     <div className={styles.root}>
-      <div>
+      <div className={styles.searchBoxContainer}>
         <SearchBox onChange={handleSearchChange} />
       </div>
 

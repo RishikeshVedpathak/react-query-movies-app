@@ -12,6 +12,10 @@
   justify-content: center;
 }
 
+.searchBoxContainer{
+  padding: 2rem;
+}
+
 .movieListContainer {
   flex: 1;
   padding: 2rem;
