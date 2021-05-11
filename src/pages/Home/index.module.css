@@ -12,9 +12,9 @@
   justify-content: center;
 }
 
-.searchBoxContainer{
-  padding: 2rem;
-}
+/* .searchBoxContainer{
+  padding: 1rem;
+} */
 
 .movieListContainer {
   flex: 1;

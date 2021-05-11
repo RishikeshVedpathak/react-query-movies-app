@@ -1,0 +1,17 @@
+.root {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem 2rem;
+    background: black;
+}
+
+.root .appLogo {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    .root {
+        justify-content: center;
+    }
+}
