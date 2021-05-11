@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 
 const Skeleton = (): React.ReactElement => {
   return (
-    <Card>
+    <Card className={styles.root}>
       <CardActionArea>
         <MuiSkeleton
           animation="wave"
