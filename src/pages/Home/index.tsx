@@ -9,7 +9,7 @@ import Skeleton from "components/MovieCard/Skeleton";
 import { Grid } from "@material-ui/core";
 
 const Home = (): ReactElement => {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("man"); // Initial value set to 'man' to display default search results on UI
 
   const handleSearchChange = (text: string) => {
     setSearchText(text);
