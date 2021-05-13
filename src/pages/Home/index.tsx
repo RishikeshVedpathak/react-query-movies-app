@@ -25,38 +25,47 @@ const Home = (): ReactElement => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.searchBoxContainer}>
-        <SearchBox onChange={handleSearchChange} />
-      </div>
-
-      <div className={styles.movieListContainer}>
-        {isLoading && (
-          <Grid container spacing={2}>
-            {[...new Array(10)].map((_, i: number) => (
-              <Grid item xs={12} md={3} key={i}>
-                <Skeleton />
-              </Grid>
-            ))}
-          </Grid>
-        )}
-
-        {isSuccess &&
-          (!!data && data.Search.length ? (
-            <Grid container spacing={2}>
-              {data.Search.map(
-                ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
-                  <Grid item xs={12} md={3} key={imdbID}>
-                    <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
-                  </Grid>
-                )
-              )}
+      <Grid container justify="center">
+        <Grid item xs={12} sm={10}>
+          <Grid container justify="center">
+            <Grid item xs={12} md={4}>
+              <SearchBox
+                className={styles.searchBox}
+                onChange={handleSearchChange}
+              />
             </Grid>
-          ) : (
-            "No Result"
-          ))}
+          </Grid>
 
-        {!!error && <div>{JSON.stringify(error)}</div>}
-      </div>
+          <Grid item xs={12} className={styles.movieListContainer}>
+            {isLoading && (
+              <Grid container spacing={2}>
+                {[...new Array(10)].map((_, i: number) => (
+                  <Grid item xs={12} md={3} key={i}>
+                    <Skeleton />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
+
+            {isSuccess &&
+              (!!data && data.Search.length ? (
+                <Grid container spacing={2}>
+                  {data.Search.map(
+                    ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
+                      <Grid item xs={12} md={3} key={imdbID}>
+                        <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
+                      </Grid>
+                    )
+                  )}
+                </Grid>
+              ) : (
+                "No Result"
+              ))}
+
+            {!!error && <div>{JSON.stringify(error)}</div>}
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 };

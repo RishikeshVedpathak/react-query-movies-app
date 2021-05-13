@@ -25,13 +25,13 @@ const MovieDetails = (): ReactElement => {
 
       {isSuccess && (
         <Grid container justify="center">
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} sm={10}>
             <Grid container>
               <Grid item xs={12} sm={4}>
                 <img
                   src={data.Poster}
                   alt={data.Title}
-                  height="500"
+                  height="600"
                   width="100%"
                 />
               </Grid>
