@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
+    backgroundColor: "#000000",
+    border: "1px solid #f6c700",
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -37,7 +39,7 @@ const SearchBox = ({ onChange, className }: SearchBoxProps): ReactElement => {
   };
 
   return (
-    <Paper variant="outlined" className={`${classes.root} ${className}`}>
+    <Paper className={`${classes.root} ${className}`}>
       <InputBase
         className={classes.input}
         placeholder="Search for a movie"
