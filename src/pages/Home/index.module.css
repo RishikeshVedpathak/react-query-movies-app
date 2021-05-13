@@ -12,8 +12,8 @@
   justify-content: center;
 }
 
-.searchBoxContainer{
-  padding: 2rem;
+.searchBox {
+  margin: 0rem 2rem;
 }
 
 .movieListContainer {
