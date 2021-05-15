@@ -6,7 +6,7 @@ import CONSTANTS from "utils/constants";
 import { useInfiniteQuery } from "react-query";
 import MovieCard, { MovieCardProps } from "components/MovieCard";
 import Skeleton from "components/MovieCard/Skeleton";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const Home = (): ReactElement => {
@@ -41,12 +41,24 @@ const Home = (): ReactElement => {
     refetch,
     remove,
   } = useInfiniteQuery(`movies`, fetchMovies, {
-    getNextPageParam: (lastPage, pages) => currentPage + 1,
+    getNextPageParam: (lastPage, pages) => {
+      return +lastPage.totalResults > currentPage * 10 ? currentPage + 1 : null;
+    },
     enabled: !!searchText.length,
     onSuccess: () => {
       setCurrentPage(currentPage + 1);
     },
   });
+
+  const MoviesLoader: ReactElement = (
+    <Grid container spacing={2}>
+      {[...new Array(8)].map((_, i: number) => (
+        <Grid item xs={12} md={3} key={i}>
+          <Skeleton />
+        </Grid>
+      ))}
+    </Grid>
+  );
 
   return (
     <div className={styles.root}>
@@ -62,16 +74,10 @@ const Home = (): ReactElement => {
           </Grid>
 
           <Grid item xs={12} className={styles.movieListContainer}>
-            {isLoading && (
-              <Grid container spacing={2}>
-                {[...new Array(10)].map((_, i: number) => (
-                  <Grid item xs={12} md={3} key={i}>
-                    <Skeleton />
-                  </Grid>
-                ))}
-              </Grid>
-            )}
+            {/* Loading state */}
+            {isLoading && MoviesLoader}
 
+            {/* Success state */}
             {isSuccess &&
               (!!data ? (
                 <InfiniteScroll
@@ -82,7 +88,8 @@ const Home = (): ReactElement => {
                   }
                   next={fetchNextPage}
                   hasMore={hasNextPage || false}
-                  loader={<h4>Loading...</h4>}
+                  loader={MoviesLoader}
+                  style={{ overflow: "hidden" }}
                 >
                   <Grid container spacing={2}>
                     {data.pages
@@ -110,11 +117,15 @@ const Home = (): ReactElement => {
                 "No Result"
               ))}
 
-            {!!error && <div>{JSON.stringify(error)}</div>}
+            {/* Error state */}
+            {!!error && (
+              <div className={styles.errorMessageContainer}>
+                {JSON.stringify(error)}
+              </div>
+            )}
           </Grid>
         </Grid>
       </Grid>
-      <Button onClick={() => fetchNextPage()}>Fetch more</Button>
     </div>
   );
 };
