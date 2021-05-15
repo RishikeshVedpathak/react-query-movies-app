@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 const Skeleton = (): React.ReactElement => {
   return (
     <Grid container justify="center">
-      <Grid item xs={12} sm={8}>
+      <Grid item xs={12} sm={10}>
         <Grid container>
           <Grid item xs={12} sm={4}>
             <MuiSkeleton variant="rect" height={500} width="100%" />
