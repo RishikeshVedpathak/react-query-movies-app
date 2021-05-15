@@ -1,26 +1,63 @@
-import React, { useState, ReactElement } from "react";
+import { useState, useEffect, ReactElement } from "react";
 import styles from "./index.module.css";
 import SearchBox from "components/SearchBox";
 import service from "utils/service";
 import CONSTANTS from "utils/constants";
-import { useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import MovieCard, { MovieCardProps } from "components/MovieCard";
 import Skeleton from "components/MovieCard/Skeleton";
 import { Grid } from "@material-ui/core";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Home = (): ReactElement => {
   const [searchText, setSearchText] = useState("man"); // Initial value set to 'man' to display default search results on UI
+  const [currentPage, setCurrentPage] = useState(0);
+
+  useEffect(() => {
+    setCurrentPage(0);
+    remove();
+    setTimeout(() => {
+      refetch();
+    }, 1000);
+  }, [searchText]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearchChange = (text: string) => {
     setSearchText(text);
   };
 
-  const { isSuccess, isLoading, error, data } = useQuery(
-    [`movies`, searchText],
-    () => service.get(CONSTANTS.BASE_URL, { s: searchText }),
-    {
-      enabled: !!searchText.length,
-    }
+  const fetchMovies = ({ pageParam = 1 }) =>
+    service.get(CONSTANTS.BASE_URL, {
+      s: searchText,
+      page: pageParam,
+    });
+
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isSuccess,
+    isLoading,
+    refetch,
+    remove,
+  } = useInfiniteQuery(`movies`, fetchMovies, {
+    getNextPageParam: (lastPage, pages) => {
+      return +lastPage.totalResults > currentPage * 10 ? currentPage + 1 : null;
+    },
+    enabled: !!searchText.length,
+    onSuccess: () => {
+      setCurrentPage(currentPage + 1);
+    },
+  });
+
+  const MoviesLoader: ReactElement = (
+    <Grid container spacing={2}>
+      {[...new Array(8)].map((_, i: number) => (
+        <Grid item xs={12} md={3} key={i}>
+          <Skeleton />
+        </Grid>
+      ))}
+    </Grid>
   );
 
   return (
@@ -37,32 +74,55 @@ const Home = (): ReactElement => {
           </Grid>
 
           <Grid item xs={12} className={styles.movieListContainer}>
-            {isLoading && (
-              <Grid container spacing={2}>
-                {[...new Array(10)].map((_, i: number) => (
-                  <Grid item xs={12} md={3} key={i}>
-                    <Skeleton />
-                  </Grid>
-                ))}
-              </Grid>
-            )}
+            {/* Loading state */}
+            {isLoading && MoviesLoader}
 
+            {/* Success state */}
             {isSuccess &&
-              (!!data && data.Search.length ? (
-                <Grid container spacing={2}>
-                  {data.Search.map(
-                    ({ Title, imdbID, Type, Year, Poster }: MovieCardProps) => (
-                      <Grid item xs={12} md={3} key={imdbID}>
-                        <MovieCard {...{ Title, imdbID, Type, Year, Poster }} />
-                      </Grid>
-                    )
-                  )}
-                </Grid>
+              (!!data ? (
+                <InfiniteScroll
+                  dataLength={
+                    data.pages.reduce((a, b) => {
+                      return { Search: [...a.Search, ...b.Search] };
+                    }).Search.length
+                  }
+                  next={fetchNextPage}
+                  hasMore={hasNextPage || false}
+                  loader={MoviesLoader}
+                  style={{ overflow: "hidden" }}
+                >
+                  <Grid container spacing={2}>
+                    {data.pages
+                      .reduce((a, b) => {
+                        return { Search: [...a.Search, ...b.Search] };
+                      })
+                      .Search.map(
+                        ({
+                          Title,
+                          imdbID,
+                          Type,
+                          Year,
+                          Poster,
+                        }: MovieCardProps) => (
+                          <Grid item xs={12} md={3} key={imdbID}>
+                            <MovieCard
+                              {...{ Title, imdbID, Type, Year, Poster }}
+                            />
+                          </Grid>
+                        )
+                      )}
+                  </Grid>
+                </InfiniteScroll>
               ) : (
                 "No Result"
               ))}
 
-            {!!error && <div>{JSON.stringify(error)}</div>}
+            {/* Error state */}
+            {!!error && (
+              <div className={styles.errorMessageContainer}>
+                {JSON.stringify(error)}
+              </div>
+            )}
           </Grid>
         </Grid>
       </Grid>
