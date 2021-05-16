@@ -34,7 +34,6 @@ const SearchBox = ({ onChange, className }: SearchBoxProps): ReactElement => {
   const handleChange = () => {
     if (!!inputRef.current) {
       onChange(inputRef.current.value);
-      // inputRef.current.value = "";
     }
   };
 
@@ -44,7 +43,6 @@ const SearchBox = ({ onChange, className }: SearchBoxProps): ReactElement => {
         className={classes.input}
         placeholder="Search for a movie"
         inputRef={inputRef}
-        autoFocus
         fullWidth
         onKeyPress={(e) => {
           if (e.key === "Enter") {
