@@ -21,8 +21,10 @@ const MovieDetails = (): ReactElement => {
 
   return (
     <div className={styles.root}>
+      {/* Loading state */}
       {isLoading && <Skeleton />}
 
+      {/* Success state */}
       {isSuccess && (
         <Grid container justify="center">
           <Grid item xs={12} sm={10}>
@@ -131,6 +133,7 @@ const MovieDetails = (): ReactElement => {
         </Grid>
       )}
 
+      {/* Error state */}
       {!!error && <div>{JSON.stringify(error)}</div>}
     </div>
   );

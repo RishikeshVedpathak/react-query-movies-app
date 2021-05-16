@@ -50,15 +50,17 @@ const Home = (): ReactElement => {
     },
   });
 
-  const MoviesLoader: ReactElement = (
-    <Grid container spacing={2}>
-      {[...new Array(8)].map((_, i: number) => (
-        <Grid item xs={12} md={3} key={i}>
-          <Skeleton />
-        </Grid>
-      ))}
-    </Grid>
-  );
+  const MoviesLoader = (itemCount: number): ReactElement => {
+    return (
+      <Grid container spacing={2}>
+        {[...new Array(itemCount)].map((_, i: number) => (
+          <Grid item xs={12} md={3} key={i}>
+            <Skeleton />
+          </Grid>
+        ))}
+      </Grid>
+    );
+  };
 
   return (
     <div className={styles.root}>
@@ -75,7 +77,7 @@ const Home = (): ReactElement => {
 
           <Grid item xs={12} className={styles.movieListContainer}>
             {/* Loading state */}
-            {isLoading && MoviesLoader}
+            {isLoading && MoviesLoader(8)}
 
             {/* Success state */}
             {isSuccess &&
@@ -88,7 +90,7 @@ const Home = (): ReactElement => {
                   }
                   next={fetchNextPage}
                   hasMore={hasNextPage || false}
-                  loader={MoviesLoader}
+                  loader={MoviesLoader(4)}
                   style={{ overflow: "hidden" }}
                 >
                   <Grid container spacing={2}>
