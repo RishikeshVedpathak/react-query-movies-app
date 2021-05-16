@@ -6,6 +6,7 @@
     position: sticky;
     top: 0px;
     z-index: 1;
+    padding: 0.5rem 2rem;
 }
 
 .root .appLogo {
@@ -15,5 +16,10 @@
 @media only screen and (max-width: 768px) {
     .root {
         justify-content: center;
+    }
+
+    .backBtn {
+        position: absolute !important;
+        left: 0px;
     }
 }
